@@ -15,9 +15,9 @@ Finally, watch as the corresponding typescript file for the html opens to the si
 
 
 
-<!-- \!\[feature X\]\(images/feature-x.png\) -->
+![show casing editors](images/showEditors.png)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+<!-- > Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow. -->
 
 ## Requirements
 

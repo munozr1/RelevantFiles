@@ -1,6 +1,5 @@
 # Relevant-Files README
 
-This is the README for your extension "html-ts". After writing up a brief description, we recommend including the following sections.
 
 ## Features
 

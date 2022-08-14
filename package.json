@@ -1,7 +1,7 @@
 {
-  "name": "html-ts",
-  "displayName": "HTML->TS",
-  "description": "automatically opens up the typescript file for an html file in an angular project",
+  "name": "relevant-files",
+  "displayName": "Relevant File Opener",
+  "description": "Allows you to open files from the relevant file based on the current file",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.70.0"
@@ -10,14 +10,14 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:html-ts.gotoTs"
+    "onCommand:relevant-files.goto"
   ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "html-ts.gotoTs",
-        "title": "Go To Relavant TS file"
+        "command": "relevant-files.goto",
+        "title": "Go To Relavant File"
       }
     ]
   },

@@ -3,6 +3,7 @@
   "displayName": "Relevant File Opener",
   "description": "Allows you to open files from the relevant file based on the current file",
   "publisher": "MunozVscodeExtensions",
+  "icon": "images/relevantfiles.png",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.70.0"

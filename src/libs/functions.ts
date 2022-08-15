@@ -17,3 +17,13 @@ export function sufficientEditorsOpen(){
   }
   return sufficientEditors;
 }
+
+
+
+export function openInFirstEditor(){
+
+}
+
+export function openInSecondEditor(){
+
+}

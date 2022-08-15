@@ -16,32 +16,35 @@ export function activate(context: vscode.ExtensionContext) {
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
   let disposable = vscode.commands.registerCommand("relevant-files.goto", () => {
-    // The code you place here will be executed every time your command is executed
-    // if(vscode.window.activeTextEditor && sufficientEditorsOpen())
-    // {
-    //   // vscode.commands.executeCommand("workbench.action.splitEditor");
-    //   goTo(vscode.window.activeTextEditor.document.fileName);
-    //   vscode.commands.executeCommand("workbench.action.moveEditorToPreviouseGroup");
-    // }else{
-    //   vscode.window.showInformationMessage("Please make sure you have at least 2 editors open");
-    //   vscode.window.showInformationMessage("Please make sure you have an html file open");
-    // }
-    switch(vscode.window.activeTextEditor?.viewColumn)
-    {
-      case 1:
-        goTo(vscode.window.activeTextEditor.document.fileName);
-        vscode.commands.executeCommand("workbench.action.moveEditorToNextGroup");
-        break;
-      case 2:
-        vscode.commands.executeCommand("workbench.action.focusFirstEditorGroup");
-        goTo(vscode.window.activeTextEditor.document.fileName);
-        break;
-      default:
-        if(vscode.window.activeTextEditor)
-          {goTo(vscode.window.activeTextEditor.document.fileName);}
-        break;
+    let htmlFile: string;
+    vscode.window.showInformationMessage("editor number: " + vscode.window.activeTextEditor?.document.valueOf());
+    if(sufficientEditorsOpen()){
+      switch(vscode.window.activeTextEditor?.viewColumn?.toString())
+      {
+        case '1':
+          htmlFile = vscode.window.activeTextEditor?.document.fileName;
+          // vscode.window.showInformationMessage("one editor open");
+          vscode.commands.executeCommand("workbench.action.focusSecondEditorGroup");
+          goTo(htmlFile);
+          break;
+          case '2':
+          htmlFile = vscode.window.activeTextEditor?.document.fileName;
+          // vscode.window.showInformationMessage("two editors open");
+          vscode.commands.executeCommand("workbench.action.focusFirstEditorGroup");
+          goTo(htmlFile);
+          break;
+        default:
+          if(vscode.window.activeTextEditor)
+            {goTo(vscode.window.activeTextEditor.document.fileName);}
+          break;
+      }
+    }else if(vscode.window.activeTextEditor){
+      // vscode.window.showInformationMessage("not enough editors, opening another editor");
+      vscode.commands.executeCommand("workbench.action.splitEditorRight");
+      vscode.commands.executeCommand("workbench.action.focusSecondEditorGroup");
+      goTo(vscode.window.activeTextEditor.document.fileName);
     }
-    // workbench.action.splitEditor
+//     // workbench.action.splitEditor
   });
 
   context.subscriptions.push(disposable);
@@ -49,3 +52,4 @@ export function activate(context: vscode.ExtensionContext) {
 
 // this method is called when your extension is deactivated
 export function deactivate() {}
+

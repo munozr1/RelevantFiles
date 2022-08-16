@@ -37,13 +37,7 @@ Initial release of Relevant-Files
 
 Command: HTML -> TS 
 
-### 1.0.1
 
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
 
 ---
 

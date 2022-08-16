@@ -37,7 +37,13 @@ Initial release of Relevant-Files
 
 Command: HTML -> TS 
 
+### 1.2.0
 
+No long required to start with 2 editors open.
+
+Command Upate:
+
+* goto -> htmlts : This command will switch between an html and typescript file.
 
 ---
 

@@ -36,7 +36,7 @@ export function goTo(file: string ) {
  */
 export function sufficientEditorsOpen(){
   let sufficientEditors: boolean = false;
-  vscode.window.showInformationMessage("checking for sufficient editors: " + vscode.window.visibleTextEditors.length);
+  // vscode.window.showInformationMessage("checking for sufficient editors: " + vscode.window.visibleTextEditors.length);
   if(vscode.window.visibleTextEditors.length >= 2){
     sufficientEditors = true;
   }

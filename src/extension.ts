@@ -22,7 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
       {
         // if the active editor is the first editor
         case 1:
-          vscode.window.showInformationMessage("active editor is the first editor");
+          // vscode.window.showInformationMessage("active editor is the first editor");
           htmlFile = HtmlTs(vscode.window.activeTextEditor?.document.fileName);
           if(isOpen(htmlFile))
             {moveRight(htmlFile);}
@@ -31,7 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
           break;
         // if the active editor is the second editor
         case 2:
-          vscode.window.showInformationMessage("active editor is the second editor");
+          // vscode.window.showInformationMessage("active editor is the second editor");
           htmlFile = HtmlTs(vscode.window.activeTextEditor?.document.fileName);
           if(isOpen(htmlFile))
             {moveLeft(htmlFile);}
@@ -39,7 +39,7 @@ export function activate(context: vscode.ExtensionContext) {
             {openLeft(htmlFile);}
           break;
         default:
-          vscode.window.showInformationMessage("active editor is neither the first nor the second editor");
+          // vscode.window.showInformationMessage("active editor is neither the first nor the second editor");
           if(vscode.window.activeTextEditor)
           {
             htmlFile = HtmlTs(vscode.window.activeTextEditor?.document.fileName);

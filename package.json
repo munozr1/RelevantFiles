@@ -12,7 +12,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:relevant-files.goto"
+    "onCommand:relevant-files.goto",
+    "onCommand:relevant-files.htmlts"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -20,6 +21,10 @@
       {
         "command": "relevant-files.goto",
         "title": "Go To Relavant File"
+      },
+      {
+        "command": "relevant-files.htmlts",
+        "title": "HTML<->TS"
       }
     ]
   },

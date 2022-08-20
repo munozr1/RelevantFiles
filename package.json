@@ -13,7 +13,11 @@
   ],
   "activationEvents": [
     "onCommand:relevant-files.goto",
-    "onCommand:relevant-files.htmlts"
+    "onCommand:relevant-files.htmlts",
+    "onCommand:relevant-files.relevnatHTML",
+    "onCommand:relevant-files.relevnatTS",
+    "onCommand:relevant-files.relevnatSCSS",
+    "onCommand:relevant-files.relevnatCSS"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -25,6 +29,22 @@
       {
         "command": "relevant-files.htmlts",
         "title": "HTML<->TS"
+      },
+      {
+        "command": "relevant-files.relevnatHTML",
+        "title": "->HTML"
+      },
+      {
+        "command": "relevant-files.relevantTS",
+        "title": "->TS"
+      },
+      {
+        "command": "relevant-files.relevantSCSS",
+        "title": "->SCSS"
+      },
+      {
+        "command": "relevant-files.relevantCSS",
+        "title": "->CSS"
       }
     ]
   },

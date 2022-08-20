@@ -9,7 +9,7 @@ import * as vscode from "vscode";
  * @param file : the file name to convert
  * @returns 
  */
-export function HtmlTs(file: string): string
+export function htmlTs(file: string): string
 {
   let newFile: string = '';
   if(file.endsWith(".html"))
@@ -86,4 +86,55 @@ export function moveLeft(file: string){
 export function moveRight(file: string){
   goTo(file);
   vscode.commands.executeCommand("workbench.action.moveEditorToNextGroup");
+}
+
+
+export function openFile(file: string){
+      if(sufficientEditorsOpen()){
+      switch(vscode.window.activeTextEditor?.viewColumn?.valueOf())
+      {
+        // if the active editor is the first editor
+        case 1:
+          // vscode.window.showInformationMessage("active editor is the first editor");
+          // file = HtmlTs(vscode.window.activeTextEditor?.document.fileName);
+          if(isOpen(file))
+            {moveRight(file);}
+          else
+            {openRight(file);}
+          break;
+        // if the active editor is the second editor
+        case 2:
+          // vscode.window.showInformationMessage("active editor is the second editor");
+          // file = HtmlTs(vscode.window.activeTextEditor?.document.fileName);
+          if(isOpen(file))
+            {moveLeft(file);}
+          else
+            {openLeft(file);}
+          break;
+        default:
+          // vscode.window.showInformationMessage("active editor is neither the first nor the second editor");
+          if(vscode.window.activeTextEditor)
+          {
+            // file = HtmlTs(vscode.window.activeTextEditor?.document.fileName);
+            goTo(vscode.window.activeTextEditor.document.fileName);
+          }
+          break;
+      }
+    }
+    // if there is only one editor open, split the window
+    // and open the file in the newly created second editor
+    else if(vscode.window.activeTextEditor){
+      // vscode.window.showInformationMessage("not enough editors, opening another editor");
+      // file = HtmlTs(vscode.window.activeTextEditor?.document.fileName);
+      createEditor(file);
+    }
+}
+
+export function changeFileName(file: string| undefined, extension: string)
+{
+  if(file){
+  let newFile: string = file.substring(0, file.lastIndexOf(".") + 1);
+  return newFile.concat(extension); 
+  }
+  vscode.window.showInformationMessage("File was undefined");
 }

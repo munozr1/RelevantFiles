@@ -3,12 +3,11 @@
 
 ## Features
 
-# HTML -> TS
-Due to the fact that this extension was inspired by constantly opening up html and typescript files side by side within an angular project, the first (and currently the only) feature is html -> ts
+# HTML <-> TS
+Toggle betwen html and typescript files.
 
-1. Have 2 editor groups open
-2. navigate to an html file
-3. cmd+shift+p to run the extension command
+1. navigate to an html file
+2. cmd+shift+p to run the extension command
 
 Finally, watch as the corresponding typescript file for the html opens to the side.
 
@@ -20,13 +19,19 @@ Finally, watch as the corresponding typescript file for the html opens to the si
 
 ## Requirements
 
-Please make sure you have atleast 2 editors opened. 
+* Have a good naming convention (Inspired by Angular Web Framework)
+ 
+ Example:
+  
+  * home.component.html
+  * home.component.ts
+  * home.component.css/scss
 
 ## Extension Settings
 
 ## Known Issues
 
-If there are not 2 editrs open, both files may be moved to a second editor group which could be anoyying. To avoid this, make sure there are atleast 2 edit groups open
+For Angular projects, while in a html file trying to open a ts file, sometimes the spec.ts file will open instead.
 
 ## Release Notes
 

@@ -1,7 +1,7 @@
 {
   "name": "relevant-files",
   "displayName": "Relevant File Opener",
-  "description": "Allows you to open files from the relevant file based on the current file",
+  "description": "Allows you to open files from the relevant file based on the current file. Inspired by Angular file structure.",
   "publisher": "MunozVscodeExtensions",
   "icon": "images/relevantfiles.png",
   "version": "0.3.0",
@@ -10,6 +10,22 @@
   },
   "categories": [
     "Other"
+  ],
+  "keywords": [
+    "Angular",
+    "Relevant Files",
+    "Relevant Files Opener",
+    "Relevant Files Opener Extension",
+    "Relevant Files Extension",
+    "Relevant Files Extension for VS Code",
+    "Relevant Files Extension for VS Code",
+    "Angular Js",
+    "Web Development",
+    "React",
+    "Vue",
+    "Vue js",
+    "Typescript",
+    "Framework"
   ],
   "activationEvents": [
     "onCommand:relevant-files.goto",

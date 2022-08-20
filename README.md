@@ -45,6 +45,16 @@ Command Upate:
 
 * goto -> htmlts : This command will switch between an html and typescript file.
 
+
+### 1.3.0
+* readme updates
+
+### 1.4.0
+ ### New Command Support for Angular
+ * ->HTML : takes you to the relevant html file base on current file (must be in same folder)
+ * ->TS: takes you to the relevant typescript file base on current file (must be in same folder)
+ * ->SCSS: takes you to the relevant SCSS file base on current file (must be in same folder)
+ * ->CSS: takes you to the relevant CSS file base on current file (must be in same folder)
 ---
 
 <!-- ## Following extension guidelines -->

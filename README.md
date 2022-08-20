@@ -35,7 +35,8 @@ If there are not 2 editrs open, both files may be moved to a second editor group
 
 Initial release of Relevant-Files
 
-Command: HTML -> TS 
+Command
+* HTML<->TS : toggles between an html and typescript file.
 
 ### 1.2.0
 

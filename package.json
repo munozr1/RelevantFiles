@@ -35,7 +35,8 @@
     "onCommand:relevant-files.relevnatSCSS",
     "onCommand:relevant-files.relevnatCSS",
     "onCommand:relevant-files.createFileLink",
-    "onCommand:relevant-files.createConfigFile"
+    "onCommand:relevant-files.createConfigFile",
+    "onCommand:relevant-files.relevantLink"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -71,6 +72,10 @@
       {
         "command": "relevant-files.createConfigFile",
         "title": "Create a File Link Config file"
+      },
+      {
+        "command": "relevant-files.relevantLink",
+        "title": "->Linked File"
       }
     ]
   },

@@ -1,9 +1,10 @@
+import { workspace } from 'vscode';
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 import { Uri } from "vscode";
 import { changeFileName, createEditor, goTo, htmlTs, isOpen,  moveLeft, moveRight, openFile, openLeft, openRight, sufficientEditorsOpen } from "./libs/functions";
-import { createConfigFile, linkFiles } from "./libs/config";
+import { createConfigFile, linkFiles, returnConfig } from "./libs/config";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -99,19 +100,33 @@ export function activate(context: vscode.ExtensionContext) {
       placeHolder: 'Path of the file you want to link to this document'
     }) || '';
     // Chekc if file exists and is valid
-    try {
       fileToLinkUri = vscode.Uri.file(fileToLink);
       await vscode.workspace.fs.stat(fileToLinkUri);
       await vscode.workspace.fs.stat(currentFileUri);
-      linkFiles(currentFileUri, fileToLinkUri );
-      // vscode.window.showInformationMessage(''+fileUri.toString) ;
-    } catch (error) {
-      vscode.window.showErrorMessage("Invalid file path") ;
-    }
-    
-
-
+      linkFiles(currentFileUri, fileToLinkUri ).catch(e => {
+        vscode.window.showErrorMessage(e);
+      });
   } );
+
+  let relevantLink = vscode.commands.registerCommand("relevant-files.relevantLink",async () => {
+
+    const currentFile = vscode.window.activeTextEditor?.document.fileName;
+    if(currentFile && currentFile !== '')
+    {
+      const configFile: Uri | void = await returnConfig().catch(e=>{
+        vscode.window.showErrorMessage(e);
+      });
+  
+      let links;
+      if(configFile)
+        {links = JSON.parse(await (await workspace.fs.readFile(configFile)).toString());}
+      else
+        {return vscode.window.showErrorMessage("Invalid configs file");}
+      let linkedFile = links[currentFile];
+      if(linkedFile)
+        {openFile(linkedFile);}
+    }
+  });
 
   context.subscriptions.push(disposable, relevantHTML, relevantTS, relevantCSS, relevantSCSS, createFileLink, configFile);
 }

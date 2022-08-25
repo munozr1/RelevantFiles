@@ -33,19 +33,31 @@ const defaultConfigFile =  {
   "yoMomma.ts": "Bruh.ts"
 };
 
+export async function returnConfig(): Promise<Uri>{
+  const configs = await workspace.findFiles(".relevantrc");
+  if(!await workspace.fs.stat(configs[0]))
+    {throw new Error('Config file not found');}
+  return configs[0];
+}
+
 
 export async function linkFiles(currentFile: Uri, fileToLink: Uri)
 {
-  const configs = await workspace.findFiles(".relevantrc");
-  if (configs.length > 1)
-    {return window.showErrorMessage("Too many rc files in workspace");}
-  if (configs.length == 0)
-    {return window.showErrorMessage("No rc file found in workspace");}
-  const configFile: Uri = configs[0];
+  // Check if a config file exists
+  const configFile = await returnConfig();
+
+
+  //Return json config object
   const configContents = (await workspace.fs.readFile(configFile)).toString();
   let links = JSON.parse(configContents);
-  window.showInformationMessage(links["yoMomma.ts"]);
+  // window.showInformationMessage(links["yoMomma.ts"]);
+  links[currentFile.fsPath] = fileToLink.fsPath;
+  window.showInformationMessage(JSON.stringify(links));
 
+
+  // turn object to Uint8 to write back to the rc file
+	const writeData = Buffer.from(JSON.stringify(links), 'utf8');
+  await workspace.fs.writeFile(configFile, writeData);
 }
 
 //TODO Check for new links in the relevantrc file

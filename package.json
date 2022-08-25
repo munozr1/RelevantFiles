@@ -1,6 +1,6 @@
 {
   "name": "relevant-files",
-  "displayName": "Relevant File Opener",
+  "displayName": "NgFiles",
   "description": "Allows you to open files from the relevant file based on the current file. Inspired by Angular file structure.",
   "publisher": "MunozVscodeExtensions",
   "icon": "images/relevantfiles.png",

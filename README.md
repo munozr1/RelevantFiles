@@ -76,6 +76,10 @@ Command Upate:
 4. now navigate to the file you want to add the link to.
 5. run the command "->createFileLInk" and paste the file path you copied in the last step
 6. run the command "->relevantLink" and expect to see the linke file open in the opposite editor
+
+
+### Name Change
+Relevant File Opener -> NgFiles
 ---
 
 <!-- ## Following extension guidelines -->

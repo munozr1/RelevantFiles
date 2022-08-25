@@ -43,6 +43,9 @@ export async function returnConfig(): Promise<Uri>{
 
 export async function linkFiles(currentFile: Uri, fileToLink: Uri)
 {
+
+  if(currentFile.fsPath === '/' ||  fileToLink.fsPath === '/')
+    {return window.showErrorMessage("Invalid file path");}
   // Check if a config file exists
   const configFile = await returnConfig();
 
@@ -51,7 +54,9 @@ export async function linkFiles(currentFile: Uri, fileToLink: Uri)
   const configContents = (await workspace.fs.readFile(configFile)).toString();
   let links = JSON.parse(configContents);
   // window.showInformationMessage(links["yoMomma.ts"]);
-  links[currentFile.fsPath] = fileToLink.fsPath;
+  if(!links[currentFile.fsPath])
+    {links[currentFile.fsPath] = fileToLink.fsPath;}
+  else{return window.showErrorMessage("File already has an existing link");}
   window.showInformationMessage(JSON.stringify(links));
 
 

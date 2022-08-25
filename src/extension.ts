@@ -108,7 +108,7 @@ export function activate(context: vscode.ExtensionContext) {
       });
   } );
 
-  let relevantLink = vscode.commands.registerCommand("relevant-files.relevantLink",async () => {
+  let relevantLinks = vscode.commands.registerCommand("relevant-files.relevantLink",async () => {
 
     const currentFile = vscode.window.activeTextEditor?.document.fileName;
     if(currentFile && currentFile !== '')
@@ -128,7 +128,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
   });
 
-  context.subscriptions.push(disposable, relevantHTML, relevantTS, relevantCSS, relevantSCSS, createFileLink, configFile);
+  context.subscriptions.push(disposable, relevantHTML, relevantTS, relevantCSS, relevantSCSS, createFileLink, configFile, relevantLinks);
 }
 
 // this method is called when your extension is deactivated

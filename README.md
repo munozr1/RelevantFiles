@@ -61,6 +61,21 @@ Command Upate:
  * ->TS: takes you to the relevant typescript file base on current file (must be in same folder)
  * ->SCSS: takes you to the relevant SCSS file base on current file (must be in same folder)
  * ->CSS: takes you to the relevant CSS file base on current file (must be in same folder)
+
+
+ ### 1.5.0
+ ### New Commands for general file linkes
+    * ->createConfigFile : Creates a .relevantrc file to store all workspace file links
+    * ->createFileLink : Creates a link between the current file open and another provided by the user
+    * ->relevantLink : navigates the user to the linked file if available in relevantrc file
+
+### Steps to get started with a config file
+1. run the command "->createConfigFile" and select your workspace
+2. navigate and open a file you wish to create a link for. 
+3. navigate to a file you want to link to and copy the FILE PATH. (/Users/projects/sites/site1/file1)
+4. now navigate to the file you want to add the link to.
+5. run the command "->createFileLInk" and paste the file path you copied in the last step
+6. run the command "->relevantLink" and expect to see the linke file open in the opposite editor
 ---
 
 <!-- ## Following extension guidelines -->

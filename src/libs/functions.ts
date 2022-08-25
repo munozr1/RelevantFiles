@@ -1,5 +1,6 @@
 
 import * as vscode from "vscode";
+import { Uri } from "vscode";
 
 
 /**
@@ -138,3 +139,7 @@ export function changeFileName(file: string| undefined, extension: string)
   }
   vscode.window.showInformationMessage("File was undefined");
 }
+
+
+
+

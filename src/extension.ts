@@ -1,7 +1,9 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
-import { changeFileName, createEditor, goTo, htmlTs, isOpen, moveLeft, moveRight, openFile, openLeft, openRight, sufficientEditorsOpen } from "./libs/functions";
+import { Uri } from "vscode";
+import { changeFileName, createEditor, goTo, htmlTs, isOpen,  moveLeft, moveRight, openFile, openLeft, openRight, sufficientEditorsOpen } from "./libs/functions";
+import { createConfigFile, linkFiles } from "./libs/config";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -9,12 +11,10 @@ export function activate(context: vscode.ExtensionContext) {
   // Use the console to output diagnostic information (console.log) and errors (console.error)
   // This line of code will only be executed once when your extension is activated
 
-  // vscode.window.showInformationMessage("Hello World!");
 
 
-  // The command has been defined in the package.json file
-  // Now provide the implementation of the command with registerCommand
-  // The commandId parameter must match the command field in package.json
+
+
   let disposable = vscode.commands.registerCommand("relevant-files.htmlts", () => {
     let htmlFile: string;
     if(sufficientEditorsOpen()){
@@ -81,9 +81,40 @@ export function activate(context: vscode.ExtensionContext) {
       {openFile(scssFile);}
   } );
 
-  context.subscriptions.push(disposable, relevantHTML, relevantTS, relevantCSS, relevantSCSS);
+
+  let configFile = vscode.commands.registerCommand("relevant-files.createConfigFile", async () => {
+    await createConfigFile();
+  });
+
+  /**
+   * Creates a rc file with all of a projects file links
+   */
+  let createFileLink = vscode.commands.registerCommand("relevant-files.createFileLink", async () => {
+    let fileToLinkUri: Uri;
+    let currentFile= vscode.window.activeTextEditor?.document.fileName || '';
+    let currentFileUri: Uri = vscode.Uri.file(currentFile);
+    //Ask for file path of file to link
+    let fileToLink: string = await vscode.window.showInputBox({
+      title: 'Enter a file path',
+      placeHolder: 'Path of the file you want to link to this document'
+    }) || '';
+    // Chekc if file exists and is valid
+    try {
+      fileToLinkUri = vscode.Uri.file(fileToLink);
+      await vscode.workspace.fs.stat(fileToLinkUri);
+      await vscode.workspace.fs.stat(currentFileUri);
+      linkFiles(currentFileUri, fileToLinkUri );
+      // vscode.window.showInformationMessage(''+fileUri.toString) ;
+    } catch (error) {
+      vscode.window.showErrorMessage("Invalid file path") ;
+    }
+    
+
+
+  } );
+
+  context.subscriptions.push(disposable, relevantHTML, relevantTS, relevantCSS, relevantSCSS, createFileLink, configFile);
 }
 
 // this method is called when your extension is deactivated
 export function deactivate() {}
-

@@ -4,7 +4,7 @@
   "description": "Allows you to open files from the relevant file based on the current file. Inspired by Angular file structure.",
   "publisher": "MunozVscodeExtensions",
   "icon": "images/relevantfiles.png",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "engines": {
     "vscode": "^1.70.0"
   },

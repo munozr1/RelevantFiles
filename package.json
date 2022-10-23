@@ -3,7 +3,7 @@
   "displayName": "NgFiles",
   "description": "Allows you to open files from the relevant file based on the current file. Inspired by Angular file structure.",
   "publisher": "MunozVscodeExtensions",
-  "icon": "images/relevantfiles.png",
+  "icon": "images/128ngFilesIcon.png",
   "version": "0.5.1",
   "engines": {
     "vscode": "^1.70.0"

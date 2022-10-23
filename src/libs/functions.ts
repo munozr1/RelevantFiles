@@ -25,10 +25,16 @@ export function htmlTs(file: string): string
  * 
  * @param file : the file to open
  */
-export function goTo(file: string ) {
-  vscode.workspace.openTextDocument(file).then(doc => {
-    vscode.window.showTextDocument(doc);
-  });
+export async function goTo(file: string ) {
+  try{
+    await vscode.workspace.openTextDocument(file).then(doc => {
+      vscode.window.showTextDocument(doc);
+    });
+  }
+  catch{
+    throw new Error(`Could not open the file: ${file}`);
+    
+  }
 }
 
 /**
@@ -50,24 +56,24 @@ export function sufficientEditorsOpen(){
  * Opens a file in the first editor.
  * @param file : the file to open
  */
-export function openLeft(file: string){
-  vscode.commands.executeCommand("workbench.action.focusFirstEditorGroup");
-  goTo(file);
+export async function openLeft(file: string){
+  await vscode.commands.executeCommand("workbench.action.focusFirstEditorGroup");
+  await goTo(file);
 }
 
 /**
  * Opens a file in the second editor.
  * @param file : the file to open
  */
-export function openRight(file: string){
-  vscode.commands.executeCommand("workbench.action.focusSecondEditorGroup");
-  goTo(file);
+export async function openRight(file: string){
+  await vscode.commands.executeCommand("workbench.action.focusSecondEditorGroup");
+  await goTo(file);
 }
 
-export function createEditor(file: string){
-  vscode.commands.executeCommand("workbench.action.splitEditorRight");
-  vscode.commands.executeCommand("workbench.action.focusSecondEditorGroup");
-  goTo(file);
+export async function createEditor(file: string){
+  await vscode.commands.executeCommand("workbench.action.splitEditorRight");
+  await vscode.commands.executeCommand("workbench.action.focusSecondEditorGroup");
+  await goTo(file);
 }
 
 export function isOpen(fileToOpen: string){
@@ -80,17 +86,17 @@ export function isOpen(fileToOpen: string){
   return open;
 }
 
-export function moveLeft(file: string){
-  goTo(file);
-  vscode.commands.executeCommand("workbench.action.moveEditorToPreviousGroup");
+export async function moveLeft(file: string){
+  await goTo(file);
+  await vscode.commands.executeCommand("workbench.action.moveEditorToPreviousGroup");
 }
-export function moveRight(file: string){
-  goTo(file);
-  vscode.commands.executeCommand("workbench.action.moveEditorToNextGroup");
+export async function moveRight(file: string){
+  await goTo(file);
+  // await vscode.commands.executeCommand("workbench.action.moveEditorToNextGroup");
 }
 
 
-export function openFile(file: string){
+export async function openFile(file: string){
       if(sufficientEditorsOpen()){
       switch(vscode.window.activeTextEditor?.viewColumn?.valueOf())
       {
@@ -99,25 +105,31 @@ export function openFile(file: string){
           // vscode.window.showInformationMessage("active editor is the first editor");
           // file = HtmlTs(vscode.window.activeTextEditor?.document.fileName);
           if(isOpen(file))
-            {moveRight(file);}
+            {
+              console.log('file already open: Moving right');
+              await moveRight(file);
+            }
           else
-            {openRight(file);}
+            {
+              console.log('file was not open: Opening right' );
+              await openRight(file);
+            }
           break;
         // if the active editor is the second editor
         case 2:
           // vscode.window.showInformationMessage("active editor is the second editor");
           // file = HtmlTs(vscode.window.activeTextEditor?.document.fileName);
           if(isOpen(file))
-            {moveLeft(file);}
+            {await moveLeft(file);}
           else
-            {openLeft(file);}
+            {await openLeft(file);}
           break;
         default:
           // vscode.window.showInformationMessage("active editor is neither the first nor the second editor");
           if(vscode.window.activeTextEditor)
           {
             // file = HtmlTs(vscode.window.activeTextEditor?.document.fileName);
-            goTo(vscode.window.activeTextEditor.document.fileName);
+            await goTo(vscode.window.activeTextEditor.document.fileName);
           }
           break;
       }

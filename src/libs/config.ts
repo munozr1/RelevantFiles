@@ -30,7 +30,6 @@ async function writeConfigFile(folderPath: Uri) {
 
 const defaultConfigFile =  {
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  "yoMomma.ts": "Bruh.ts"
 };
 
 export async function returnConfig(): Promise<Uri>{

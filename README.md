@@ -69,6 +69,8 @@ Command Upate:
     * ->createFileLink : Creates a link between the current file open and another provided by the user
     * ->relevantLink : navigates the user to the linked file if available in relevantrc file
 
+### 1.5.1
+ * fix: Fixed the issue of opening the same file in both text editors
 ### Steps to get started with a config file
 1. run the command "->createConfigFile" and select your workspace
 2. navigate and open a file you wish to create a link for. 

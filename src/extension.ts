@@ -5,6 +5,7 @@ import * as vscode from "vscode";
 import { Uri } from "vscode";
 import { changeFileName, createEditor, goTo, htmlTs, isOpen,  moveLeft, moveRight, openFile, openLeft, openRight, sufficientEditorsOpen } from "./libs/functions";
 import { createConfigFile, linkFiles, returnConfig } from "./libs/config";
+import { open } from 'fs';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -18,28 +19,30 @@ export function activate(context: vscode.ExtensionContext) {
       {
         // if the active editor is the first editor
         case 1:
-          // vscode.window.showInformationMessage("active editor is the first editor");
+          // vscode.window.showInformationMessage("current: left moving: right");
           htmlFile = htmlTs(vscode.window.activeTextEditor?.document.fileName);
-          if(isOpen(htmlFile))
-            {moveRight(htmlFile);}
-          else
-            {openRight(htmlFile);}
+          openRight(htmlFile);
+          // if(isOpen(htmlFile))
+          //   {moveRight(htmlFile);}
+          // else
+          //   {openRight(htmlFile);}
           break;
         // if the active editor is the second editor
         case 2:
-          // vscode.window.showInformationMessage("active editor is the second editor");
+          // vscode.window.showInformationMessage("current: right moving: left");
           htmlFile = htmlTs(vscode.window.activeTextEditor?.document.fileName);
-          if(isOpen(htmlFile))
-            {moveLeft(htmlFile);}
-          else
-            {openLeft(htmlFile);}
+          openLeft(htmlFile);
+          // if(isOpen(htmlFile))
+          //   {moveLeft(htmlFile);}
+          // else
+          //   {openLeft(htmlFile);}
           break;
         default:
-          // vscode.window.showInformationMessage("active editor is neither the first nor the second editor");
+          // vscode.window.showInformationMessage("defaulting active editor");
           if(vscode.window.activeTextEditor)
           {
-            htmlFile = htmlTs(vscode.window.activeTextEditor?.document.fileName);
-            goTo(vscode.window.activeTextEditor.document.fileName);
+            htmlFile = htmlTs(vscode.window.activeTextEditor!.document.fileName);
+            goTo(vscode.window.activeTextEditor!.document.fileName);
           }
           break;
       }
